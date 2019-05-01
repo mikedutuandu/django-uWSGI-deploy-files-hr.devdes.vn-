@@ -1,0 +1,11 @@
+[Unit]
+Description=uWSGI Emperor service
+[Service]
+ExecStartPre=/usr/bin/bash -c 'mkdir -p /run/uwsgi; chown uwsgi:nginx /run/uwsgi'
+ExecStart=/var/www/devdes_hr/env/bin/uwsgi --emperor /etc/uwsgi/sites
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
+[Install]
+WantedBy=multi-user.target
